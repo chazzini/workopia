@@ -2,7 +2,7 @@
     loadPartial('head');
     loadPartial('navbar') ;
     loadPartial('showcase-search') ;
-    loadPartial('top-bannebr');
+    loadPartial('top-banner');
 ?>
    
 
@@ -193,7 +193,7 @@
             </div>
           </div>
         </div>
-        <a href="listings.html" class="block text-xl text-center">
+        <a href="/listings" class="block text-xl text-center">
           <i class="fa fa-arrow-alt-circle-right"></i>
           Show All Jobs
         </a>
@@ -211,7 +211,7 @@
           </p>
         </div>
         <a
-          href="post-job.html"
+          href="/listings/create"
           class="px-4 py-2 text-black transition duration-300 bg-yellow-500 rounded hover:bg-yellow-600 hover:shadow-md"
         >
           <i class="fa fa-edit"></i> Post a Job
