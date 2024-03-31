@@ -38,10 +38,41 @@
     
     $viewPath = basePath("views/partials/{$view}.php");
 
+
+
     if(file_exists($viewPath)){
 
         require $viewPath;
     }else{
         echo "{$view} not found";
     }
+  }
+
+  /**
+   * Inspect  a value
+   * 
+   * @param mixed $value
+   * @return void
+   */
+  function inspect(mixed $value):void
+  {
+     echo '<pre>';
+     var_dump($value);
+     echo '</pre>';  
+
+  }
+  /**
+   * Inspect  a value and Die
+   * 
+   * @param mixed $value
+   * @return void
+   */
+  function inspectAndDie(mixed $value):void
+  {
+     echo '<pre>';
+     var_dump($value);
+     echo '</pre>';  
+
+     die();
+
   }
