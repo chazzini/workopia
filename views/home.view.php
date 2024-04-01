@@ -1,70 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="css/style.css" />
-    <title>Workopia</title>
-  </head>
-  <body class="bg-gray-100">
-    <!-- Nav -->
-    <header class="p-4 text-white bg-blue-900">
-      <div class="container flex items-center justify-between mx-auto">
-        <h1 class="text-3xl font-semibold">
-          <a href="index.html">Workopia</a>
-        </h1>
-        <nav class="space-x-4">
-          <a href="login.html" class="text-white hover:underline">Login</a>
-          <a href="register.html" class="text-white hover:underline">Register</a>
-          <a
-            href="post-job.html"
-            class="px-4 py-2 text-black transition duration-300 bg-yellow-500 rounded hover:bg-yellow-600 hover:shadow-md"
-            ><i class="fa fa-edit"></i> Post a Job</a
-          >
-        </nav>
-      </div>
-    </header>
+<?php 
+    loadPartial('head');
+    loadPartial('navbar') ;
+    loadPartial('showcase-search') ;
+    loadPartial('top-bannebr');
+?>
+   
 
-    <!-- Showcase -->
-    <section
-      class="relative flex items-center bg-center bg-no-repeat bg-cover showcase h-72"
-    >
-      <div class="overlay"></div>
-      <div class="container z-10 mx-auto text-center">
-        <h2 class="mb-4 text-4xl font-bold text-white">Find Your Dream Job</h2>
-        <form class="block mx-5 mb-4 md:mx-auto">
-          <input
-            type="text"
-            name="keywords"
-            placeholder="Keywords"
-            class="w-full px-4 py-2 mb-2 md:w-auto focus:outline-none"
-          />
-          <input
-            type="text"
-            name="location"
-            placeholder="Location"
-            class="w-full px-4 py-2 mb-2 md:w-auto focus:outline-none"
-          />
-          <button
-            class="w-full px-4 py-2 text-white bg-blue-500 md:w-auto hover:bg-blue-600 focus:outline-none"
-          >
-          <i class="fa fa-search"></i> Search
-          </button>
-        </form>
-      </div>
-    </section>
+    
 
-    <!-- Top Banner -->
-    <section class="py-6 text-center text-white bg-blue-900">
-      <div class="container mx-auto">
-        <h2 class="text-3xl font-semibold">Unlock Your Career Potential</h2>
-        <p class="mt-2 text-lg">
-          Discover the perfect job opportunity for you.
-        </p>
-      </div>
-    </section>
 
     <!-- Job Listings -->
     <section>
@@ -275,6 +218,4 @@
         </a>
       </div>
     </section>
-     
-  </body>
-</html>
+  <?php require basePath('views/partials/footer.php'); ?>
