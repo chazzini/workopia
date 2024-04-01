@@ -1,11 +1,15 @@
 <?php
+require __DIR__ . '/../vendor/autoload.php';
 require '../helper.php';
 
+use Framework\Router;
 
-spl_autoload_register(fn($class) =>
-    (file_exists(basePath('/Framework/' . $class . '.php')))
-    ? require basePath('/Framework/' . $class . '.php')
-    : '');
+
+
+// spl_autoload_register(fn($class) =>
+//     (file_exists(basePath('/Framework/' . $class . '.php')))
+//     ? require basePath('/Framework/' . $class . '.php')
+//     : '');
 
 
 //intaitate the route
