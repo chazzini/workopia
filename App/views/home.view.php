@@ -76,4 +76,4 @@ loadPartial('top-banner');
         </a>
     </div>
 </section>
-<?php require basePath('views/partials/footer.php'); ?>
+<?php loadPartial('footer'); ?>
