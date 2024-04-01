@@ -1,6 +1,7 @@
-<?php 
+<?php
 
-Class Router {
+class Router
+{
     protected $routes = [];
 
     /**
@@ -12,12 +13,12 @@ Class Router {
      * 
      * @return void
      */
-    public function registerRoutes(string $method,string $uri,string $controller):void
+    public function registerRoutes(string $method, string $uri, string $controller): void
     {
-        $this->routes[] =[
-            'method'=>$method,
-            'uri'=>$uri,
-            'controller'=>$controller
+        $this->routes[] = [
+            'method' => $method,
+            'uri' => $uri,
+            'controller' => $controller
         ];
     }
 
@@ -29,9 +30,9 @@ Class Router {
      * 
      * @return void
      */
-    public function get(string $uri, string $controller):void
+    public function get(string $uri, string $controller): void
     {
-        $this->registerRoutes('GET',$uri,$controller);
+        $this->registerRoutes('GET', $uri, $controller);
     }
 
     /**
@@ -42,9 +43,9 @@ Class Router {
      * 
      * @return void
      */
-    public function post(string $uri, string $controller):void
+    public function post(string $uri, string $controller): void
     {
-        $this->registerRoutes('POST',$uri,$controller);
+        $this->registerRoutes('POST', $uri, $controller);
     }
 
     /**
@@ -55,9 +56,9 @@ Class Router {
      * 
      * @return void
      */
-    public function delete(string $uri, string $controller):void
+    public function delete(string $uri, string $controller): void
     {
-        $this->registerRoutes('DELETE',$uri,$controller);
+        $this->registerRoutes('DELETE', $uri, $controller);
     }
     /**
      * Register Put Route
@@ -67,9 +68,9 @@ Class Router {
      * 
      * @return void
      */
-    public function put(string $uri, string $controller):void
+    public function put(string $uri, string $controller): void
     {
-        $this->registerRoutes('PUT',$uri,$controller);
+        $this->registerRoutes('PUT', $uri, $controller);
     }
 
     /**
@@ -80,7 +81,7 @@ Class Router {
     public function error(int $http_code = 404)
     {
         http_response_code($http_code);
-        loadView("errors/".$http_code);
+        loadView("errors/" . $http_code);
         exit;
     }
 
@@ -93,13 +94,12 @@ Class Router {
      * 
      * @return void
      */
-    public function route(string $uri, string $method):void
+    public function route(string $uri, string $method): void
     {
 
-        foreach($this->routes as $route){
-            if($route['uri']===$uri && $route['method']==$method)
-            {
-                require basePath($route['controller']);
+        foreach ($this->routes as $route) {
+            if ($route['uri'] === $uri && $route['method'] == $method) {
+                require basePath('App/' . $route['controller']);
                 return;
             }
 

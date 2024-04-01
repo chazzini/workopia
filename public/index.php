@@ -1,7 +1,11 @@
 <?php
 require '../helper.php';
-require basePath('Database.php');
-require basePath('Router.php');
+
+
+spl_autoload_register(fn($class) =>
+    (file_exists(basePath('/Framework/' . $class . '.php')))
+    ? require basePath('/Framework/' . $class . '.php')
+    : '');
 
 
 //intaitate the route

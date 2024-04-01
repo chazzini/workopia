@@ -19,7 +19,7 @@ function basePath(string $path = ''): string
  */
 function loadView(string $view, array $data = []): void
 {
-  $viewPath = basePath("views/{$view}.view.php");
+  $viewPath = basePath("App/views/{$view}.view.php");
 
   if (file_exists($viewPath)) {
     extract($data);
@@ -37,7 +37,7 @@ function loadView(string $view, array $data = []): void
 function loadPartial(string $view): void
 {
 
-  $viewPath = basePath("views/partials/{$view}.php");
+  $viewPath = basePath("App/views/partials/{$view}.php");
 
 
 
