@@ -2,6 +2,7 @@
 namespace App\Controllers;
 
 use Framework\Database;
+use Framework\Validation;
 
 /**
  * ListingController class
@@ -39,8 +40,12 @@ class ListingController
      */
     public function show($params)
     {
-
+        inspectAndDie(Validation::string('abd4', 4));
         $listing = $this->db->query('SELECT * FROM listings where id = :id', $params)->fetch();
+
+        if (!$listing) {
+            ErrorController::notfound('Listing not found');
+        }
 
         loadView('listings/show', compact('listing'));
     }
