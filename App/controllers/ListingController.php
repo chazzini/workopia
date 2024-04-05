@@ -10,6 +10,7 @@ class ListingController
 {
     public $db = null;
 
+
     /**
      * __construct
      *
@@ -36,9 +37,9 @@ class ListingController
      *
      * @return void
      */
-    public function show()
+    public function show($params)
     {
-        $params = ['id' => $_GET['id']];
+
         $listing = $this->db->query('SELECT * FROM listings where id = :id', $params)->fetch();
 
         loadView('listings/show', compact('listing'));
