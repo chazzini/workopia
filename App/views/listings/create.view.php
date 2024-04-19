@@ -12,56 +12,84 @@ loadPartial('top-banner');
         <div class="p-3 my-3 bg-green-100 message">
           This is a success message.
         </div> -->
-        <form method="POST">
+        <form method="POST" action="/listings">
             <h2 class="mb-6 text-2xl font-bold text-center text-gray-500">
                 Job Info
             </h2>
             <div class="mb-4">
                 <input type="text" name="title" placeholder="Job Title"
-                    class="w-full px-4 py-2 border rounded focus:outline-none" />
+                    class="w-full px-4 py-2 border rounded focus:outline-none"
+                    value="<?= $listings['title'] ?? '' ?>" />
+                <?php if (isset($errors['title'])): ?>
+                <em class="text-danger"><?= $errors['title'] ?></em>
+                <?php endif; ?>
             </div>
             <div class="mb-4">
                 <textarea name="description" placeholder="Job Description"
-                    class="w-full px-4 py-2 border rounded focus:outline-none"></textarea>
+                    class="w-full px-4 py-2 border rounded focus:outline-none"><?= $listings['title'] ?? '' ?></textarea>
             </div>
+            <?php if (isset($errors['description'])): ?>
+            <em class="text-danger"><?= $errors['description'] ?></em>
+            <?php endif; ?>
             <div class="mb-4">
                 <input type="text" name="salary" placeholder="Annual Salary"
-                    class="w-full px-4 py-2 border rounded focus:outline-none" />
+                    class="w-full px-4 py-2 border rounded focus:outline-none"
+                    value="<?= $listings['salary'] ?? '' ?>" />
+
             </div>
             <div class="mb-4">
                 <input type="text" name="requirements" placeholder="Requirements"
-                    class="w-full px-4 py-2 border rounded focus:outline-none" />
+                    class="w-full px-4 py-2 border rounded focus:outline-none"
+                    value="<?= $listings['requirement'] ?? '' ?>" />
+                <?php if (isset($errors['requirements'])): ?>
+                <em class="text-danger"><?= $errors['requirements'] ?></em>
+                <?php endif; ?>
             </div>
             <div class="mb-4">
                 <input type="text" name="benefits" placeholder="Benefits"
-                    class="w-full px-4 py-2 border rounded focus:outline-none" />
+                    class="w-full px-4 py-2 border rounded focus:outline-none"
+                    value="<?= $listings['benefit'] ?? '' ?>" />
             </div>
             <h2 class="mb-6 text-2xl font-bold text-center text-gray-500">
                 Company Info & Location
             </h2>
             <div class="mb-4">
                 <input type="text" name="company" placeholder="Company Name"
-                    class="w-full px-4 py-2 border rounded focus:outline-none" />
+                    class="w-full px-4 py-2 border rounded focus:outline-none"
+                    value="<?= $listings['company'] ?? '' ?>" />
+                <?php if (isset($errors['company'])): ?>
+                <em class="text-danger"><?= $errors['company'] ?></em>
+                <?php endif; ?>
             </div>
             <div class="mb-4">
                 <input type="text" name="address" placeholder="Address"
-                    class="w-full px-4 py-2 border rounded focus:outline-none" />
+                    class="w-full px-4 py-2 border rounded focus:outline-none"
+                    value="<?= $listings['address'] ?? '' ?>" />
             </div>
             <div class="mb-4">
                 <input type="text" name="city" placeholder="City"
-                    class="w-full px-4 py-2 border rounded focus:outline-none" />
+                    class="w-full px-4 py-2 border rounded focus:outline-none" value="<?= $listings['city'] ?? '' ?>" />
+                <?php if (isset($errors['city'])): ?>
+                <em class="text-danger"><?= $errors['city'] ?></em>
+                <?php endif; ?>
             </div>
             <div class="mb-4">
                 <input type="text" name="state" placeholder="State"
-                    class="w-full px-4 py-2 border rounded focus:outline-none" />
+                    class="w-full px-4 py-2 border rounded focus:outline-none"
+                    value="<?= $listings['state'] ?? '' ?>" />
+                <?php if (isset($errors['state'])): ?>
+                <em class="text-danger"><?= $errors['state'] ?></em>
+                <?php endif; ?>
             </div>
             <div class="mb-4">
                 <input type="text" name="phone" placeholder="Phone"
-                    class="w-full px-4 py-2 border rounded focus:outline-none" />
+                    class="w-full px-4 py-2 border rounded focus:outline-none"
+                    value="<?= $listings['phone'] ?? '' ?>" />
             </div>
             <div class="mb-4">
                 <input type="email" name="email" placeholder="Email Address For Applications"
-                    class="w-full px-4 py-2 border rounded focus:outline-none" />
+                    class="w-full px-4 py-2 border rounded focus:outline-none"
+                    value="<?= $listings['email'] ?? '' ?>" />
             </div>
             <button class="w-full px-4 py-2 my-3 text-white bg-green-500 rounded hover:bg-green-600 focus:outline-none">
                 Save

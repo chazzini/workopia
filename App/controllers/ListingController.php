@@ -40,10 +40,11 @@ class ListingController
      */
     public function show($params)
     {
-        inspectAndDie(Validation::string('abd4', 4));
+
         $listing = $this->db->query('SELECT * FROM listings where id = :id', $params)->fetch();
 
-        if (!$listing) {
+        if (!$listing)
+        {
             ErrorController::notfound('Listing not found');
         }
 
@@ -58,5 +59,54 @@ class ListingController
     public function create()
     {
         loadView('listings/create');
+    }
+
+
+    /**
+     * store data
+     *
+     * @return void
+     */
+    public function store(): void
+    {
+        $allowedFields = [
+            'title',
+            'description',
+            'salary',
+            'tags',
+            'company',
+            'address',
+            'city',
+            'state',
+            'phone',
+            'email',
+            'requirements',
+            'benefits'
+        ];
+
+        $newListingData = array_intersect_key($_POST, array_flip($allowedFields));
+        $newListingData['user_id'] = 1;
+
+        $newListingData = array_map('sanitize', $newListingData);
+
+        $requiredFields = ['title', 'description', 'email', 'city', 'state'];
+        $errors = [];
+
+        foreach ($requiredFields as $field)
+        {
+            if (empty($newListingData[$field]) || !Validation::string($newListingData[$field]))
+            {
+                $errors[$field] = ucfirst($field) . ' is required';
+            }
+        }
+
+
+        if ($errors)
+        {
+            loadView('listings/create', ['errors' => $errors, 'listings' => $newListingData]);
+        } else
+        {
+            //sbumit data
+        }
     }
 }
