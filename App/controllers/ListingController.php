@@ -86,6 +86,7 @@ class ListingController
 
         $newListingData = array_intersect_key($_POST, array_flip($allowedFields));
         $newListingData['user_id'] = 1;
+        $newListingData['created_at'] = 'now()';
 
         $newListingData = array_map('sanitize', $newListingData);
 
@@ -106,7 +107,30 @@ class ListingController
             loadView('listings/create', ['errors' => $errors, 'listings' => $newListingData]);
         } else
         {
-            //sbumit data
+            $fields = [];
+            $values = [];
+            foreach ($newListingData as $key => $value)
+            {
+                $fields[] = $key;
+
+                //for value convert empty strings to null
+                if ($value === '')
+                {
+                    $newListingData[$key] = null;
+                }
+                $values[] = ':' . $key;
+
+            }
+
+            $fields = implode(', ', $fields);
+            $values = implode(', ', $values);
+
+            $query = "insert into listings ({$fields}) values ({$values})";
+
+            $this->db->query($query, $newListingData);
+
+            redirect('/listings/create');
+
         }
     }
 }
