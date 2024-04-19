@@ -95,7 +95,15 @@ class Router
     {
         $requestMethod = $_SERVER['REQUEST_METHOD'];
 
-        foreach ($this->routes as $route) {
+        //check for _method input
+        if ($requestMethod == 'POST' && isset($_POST['_method']))
+        {
+            //override request method
+            $requestMethod = strtoupper($_POST['_method']);
+        }
+
+        foreach ($this->routes as $route)
+        {
 
             //split the current URI into segments
             $uriSegments = explode('/', trim($uri, '/'));
@@ -111,24 +119,28 @@ class Router
             if (
                 count($routeSegments) === count($uriSegments)
                 && $route['method'] == strtoupper($requestMethod)
-            ) {
+            )
+            {
 
 
 
                 $params = [];
                 $match = true;
 
-                for ($i = 0; $i < count($uriSegments); $i++) {
+                for ($i = 0; $i < count($uriSegments); $i++)
+                {
 
 
-                    if (($routeSegments[$i] != $uriSegments[$i]) && !preg_match('/\{(.+?)\}/', $routeSegments[$i])) {
+                    if (($routeSegments[$i] != $uriSegments[$i]) && !preg_match('/\{(.+?)\}/', $routeSegments[$i]))
+                    {
                         $match = false;
                         break;
                     }
 
 
                     //check for the param and add to param array
-                    if (preg_match('/\{(.+?)\}/', $routeSegments[$i], $matches)) {
+                    if (preg_match('/\{(.+?)\}/', $routeSegments[$i], $matches))
+                    {
                         $params[$matches[1]] = $uriSegments[$i];
                     }
 
@@ -136,7 +148,8 @@ class Router
 
                 }
 
-                if ($match) {
+                if ($match)
+                {
                     //Extract controller and controller method
                     $controller = 'App\\Controllers\\' . $route['controller'];
                     $controllerMethod = $route['controllerMethod'];

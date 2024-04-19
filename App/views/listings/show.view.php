@@ -6,14 +6,16 @@ loadPartial('top-banner');
 <section class="container p-4 mx-auto mt-4">
     <div class="p-3 bg-white rounded-lg shadow-md">
         <div class="flex items-center justify-between">
-            <a class="block p-4 text-blue-700" href="/listings">
+            <a class="block p-4 text-blue-700" href="/listings
+            <?= $id ?>">
                 <i class="fa fa-arrow-alt-circle-left"></i>
                 Back To Listings
             </a>
             <div class="flex ml-4 space-x-4">
                 <a href="/edit" class="px-4 py-2 text-white bg-blue-500 rounded hover:bg-blue-600">Edit</a>
                 <!-- Delete Form -->
-                <form method="POST">
+                <form method="POST" action="/listings/<?= $listing->id ?>">
+                    <input type="hidden" name="_method" value="DELETE">
                     <button type="submit"
                         class="px-4 py-2 text-white bg-red-500 rounded hover:bg-red-600">Delete</button>
                 </form>
