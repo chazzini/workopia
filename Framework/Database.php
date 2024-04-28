@@ -9,6 +9,7 @@ use PDOStatement;
 class Database
 {
     public $conn;
+    public $stm;
 
 
     /**
@@ -25,10 +26,12 @@ class Database
             PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
             PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_OBJ,
         ];
-        try {
+        try
+        {
             $this->conn = new PDO($dsn, $config['user'], $config['password'], $options);
 
-        } catch (PDOException $e) {
+        } catch (PDOException $e)
+        {
             throw new Exception("Unable to connect: " . $e->getMessage());
         }
     }
@@ -45,15 +48,17 @@ class Database
     public function query(string $query, array $params = []): PDOStatement
     {
 
-        try {
+        try
+        {
             $smt = $this->conn->prepare($query);
-
-            foreach ($params as $param => $value) {
+            foreach ($params as $param => $value)
+            {
                 $smt->bindValue(':' . $param, $value);
             }
             $smt->execute();
             return $smt;
-        } catch (PDOException $e) {
+        } catch (PDOException $e)
+        {
             throw new \Exception("Query failed to execute: " . $e->getMessage());
         }
     }
