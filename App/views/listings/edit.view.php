@@ -2,7 +2,7 @@
 loadPartial('head');
 loadPartial('navbar');
 loadPartial('top-banner');
-
+loadPartial('message');
 ?>
 
 <!-- Post a Job Form Box -->
@@ -23,7 +23,7 @@ loadPartial('top-banner');
                     class="w-full px-4 py-2 border rounded focus:outline-none"
                     value="<?= $listings['title'] ?? '' ?>" />
                 <?php if (isset($errors['title'])): ?>
-                <em class="text-danger"><?= $errors['title'] ?></em>
+                    <em class="text-danger"><?= $errors['title'] ?></em>
                 <?php endif; ?>
             </div>
             <div class="mb-4">
@@ -31,7 +31,7 @@ loadPartial('top-banner');
                     class="w-full px-4 py-2 border rounded focus:outline-none"><?= $listings['title'] ?? '' ?></textarea>
             </div>
             <?php if (isset($errors['description'])): ?>
-            <em class="text-danger"><?= $errors['description'] ?></em>
+                <em class="text-danger"><?= $errors['description'] ?></em>
             <?php endif; ?>
             <div class="mb-4">
                 <input type="text" name="salary" placeholder="Annual Salary"
@@ -44,7 +44,7 @@ loadPartial('top-banner');
                     class="w-full px-4 py-2 border rounded focus:outline-none"
                     value="<?= $listings['requirements'] ?? '' ?>" />
                 <?php if (isset($errors['requirements'])): ?>
-                <em class="text-danger"><?= $errors['requirements'] ?></em>
+                    <em class="text-danger"><?= $errors['requirements'] ?></em>
                 <?php endif; ?>
             </div>
             <div class="mb-4">
@@ -60,7 +60,7 @@ loadPartial('top-banner');
                     class="w-full px-4 py-2 border rounded focus:outline-none"
                     value="<?= $listings['company'] ?? '' ?>" />
                 <?php if (isset($errors['company'])): ?>
-                <em class="text-danger"><?= $errors['company'] ?></em>
+                    <em class="text-danger"><?= $errors['company'] ?></em>
                 <?php endif; ?>
             </div>
             <div class="mb-4">
@@ -72,7 +72,7 @@ loadPartial('top-banner');
                 <input type="text" name="city" placeholder="City"
                     class="w-full px-4 py-2 border rounded focus:outline-none" value="<?= $listings['city'] ?? '' ?>" />
                 <?php if (isset($errors['city'])): ?>
-                <em class="text-danger"><?= $errors['city'] ?></em>
+                    <em class="text-danger"><?= $errors['city'] ?></em>
                 <?php endif; ?>
             </div>
             <div class="mb-4">
@@ -80,7 +80,7 @@ loadPartial('top-banner');
                     class="w-full px-4 py-2 border rounded focus:outline-none"
                     value="<?= $listings['state'] ?? '' ?>" />
                 <?php if (isset($errors['state'])): ?>
-                <em class="text-danger"><?= $errors['state'] ?></em>
+                    <em class="text-danger"><?= $errors['state'] ?></em>
                 <?php endif; ?>
             </div>
             <div class="mb-4">
