@@ -3,6 +3,7 @@ namespace App\Controllers;
 
 use Framework\Database;
 use Framework\Validation;
+use PDO;
 
 /**
  * ListingController class
@@ -33,6 +34,7 @@ class ListingController
         $listings = $this->db->query('SELECT * FROM listings')->fetchAll();
         loadView('listings/index', compact('listings'));
     }
+
     /**
      * show
      *
@@ -50,7 +52,24 @@ class ListingController
 
         loadView('listings/show', compact('listing'));
     }
+    /**
+     * edit listing
+     *
+     * @return void
+     */
+    public function edit($params)
+    {
+        $this->db->conn->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+        $listings = $this->db->query('SELECT * FROM listings where id = :id', $params)->fetch();
 
+        if (!$listings)
+        {
+            ErrorController::notfound('Listing not found');
+        }
+
+
+        loadView('listings/edit', compact('listings'));
+    }
     /**
      * create
      *
@@ -130,6 +149,79 @@ class ListingController
             $this->db->query($query, $newListingData);
 
             redirect('/listings/create');
+
+        }
+    }
+
+
+    /**
+     * store data
+     *
+     * @return void
+     */
+    public function update($params): void
+    {
+        $allowedFields = [
+
+            'title',
+            'description',
+            'salary',
+            'tags',
+            'company',
+            'address',
+            'city',
+            'state',
+            'phone',
+            'email',
+            'requirements',
+            'benefits'
+        ];
+
+        $newListingData = array_intersect_key($_POST, array_flip($allowedFields));
+
+
+
+
+        $newListingData = array_map('sanitize', $newListingData);
+
+        $requiredFields = ['title', 'description', 'email', 'city', 'state'];
+        $errors = [];
+
+        foreach ($requiredFields as $field)
+        {
+            if (empty($newListingData[$field]) || !Validation::string($newListingData[$field]))
+            {
+                $errors[$field] = ucfirst($field) . ' is required';
+            }
+        }
+
+
+        if ($errors)
+        {
+            loadView('listings/edit/{' . $params['id'] . '}', ['errors' => $errors, 'listings' => $newListingData]);
+        } else
+        {
+            $values = [];
+            foreach ($newListingData as $key => $value)
+            {
+
+                $values[] = $key . '= :' . $key;
+
+            }
+            $newListingData['id'] = $params['id'];
+
+            $values = implode(', ', $values);
+
+
+            $query = "UPDATE listings SET {$values}  WHERE id= :id";
+
+
+
+            $this->db->query($query, $newListingData);
+
+            $_SESSION['success_message'] = 'Listing updated successfully';
+
+            redirect('/listings');
 
         }
     }

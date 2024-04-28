@@ -12,7 +12,8 @@ loadPartial('top-banner');
                 Back To Listings
             </a>
             <div class="flex ml-4 space-x-4">
-                <a href="/edit" class="px-4 py-2 text-white bg-blue-500 rounded hover:bg-blue-600">Edit</a>
+                <a href="/listings/edit/<?= $listing->id ?>"
+                    class="px-4 py-2 text-white bg-blue-500 rounded hover:bg-blue-600">Edit</a>
                 <!-- Delete Form -->
                 <form method="POST" action="/listings/<?= $listing->id ?>">
                     <input type="hidden" name="_method" value="DELETE">
