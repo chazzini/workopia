@@ -8,15 +8,16 @@ loadPartial('message');
 <!-- Post a Job Form Box -->
 <section class="flex items-center justify-center mt-20">
     <div class="w-full p-8 mx-6 bg-white rounded-lg shadow-md md:w-600">
-        <h2 class="mb-4 text-4xl font-bold text-center">Create Job Listing</h2>
+        <h2 class="mb-4 text-4xl font-bold text-center">Edit Job Listing</h2>
         <!-- <div class="p-3 my-3 bg-red-100 message">This is an error message.</div>
         <div class="p-3 my-3 bg-green-100 message">
           This is a success message.
         </div> -->
-        <form method="POST" action="/listings">
+        <form method="POST" action="/listings/update/<?= $listings['id'] ?>">
             <h2 class="mb-6 text-2xl font-bold text-center text-gray-500">
                 Job Info
             </h2>
+            <input hidden name="_method" value="PUT" />
             <div class="mb-4">
                 <input type="text" name="title" placeholder="Job Title"
                     class="w-full px-4 py-2 border rounded focus:outline-none"

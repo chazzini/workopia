@@ -3,8 +3,9 @@ require __DIR__ . '/../vendor/autoload.php';
 require '../helper.php';
 
 use Framework\Router;
+use Framework\Session;
 
-
+Session::start();
 
 // spl_autoload_register(fn($class) =>
 //     (file_exists(basePath('/Framework/' . $class . '.php')))

@@ -2,7 +2,9 @@
 loadPartial('head');
 loadPartial('navbar');
 loadPartial('top-banner');
+loadPartial('message');
 ?>
+
 <section class="container p-4 mx-auto mt-4">
     <div class="p-3 bg-white rounded-lg shadow-md">
         <div class="flex items-center justify-between">
@@ -10,15 +12,19 @@ loadPartial('top-banner');
                 <i class="fa fa-arrow-alt-circle-left"></i>
                 Back To Listings
             </a>
-            <div class="flex ml-4 space-x-4">
-                <a href="/edit" class="px-4 py-2 text-white bg-blue-500 rounded hover:bg-blue-600">Edit</a>
-                <!-- Delete Form -->
-                <form method="POST">
-                    <button type="submit"
-                        class="px-4 py-2 text-white bg-red-500 rounded hover:bg-red-600">Delete</button>
-                </form>
-                <!-- End Delete Form -->
-            </div>
+            <?php if (\Framework\Authorization::isOwner($listing->user_id)): ?>
+                <div class="flex ml-4 space-x-4">
+                    <a href="/listings/edit/<?= $listing->id ?>"
+                        class="px-4 py-2 text-white bg-blue-500 rounded hover:bg-blue-600">Edit</a>
+                    <!-- Delete Form -->
+                    <form method="POST" action="/listings/<?= $listing->id ?>">
+                        <input type="hidden" name="_method" value="DELETE">
+                        <button type="submit"
+                            class="px-4 py-2 text-white bg-red-500 rounded hover:bg-red-600">Delete</button>
+                    </form>
+                    <!-- End Delete Form -->
+                </div>
+            <?php endif; ?>
         </div>
         <div class="p-4">
             <h2 class="text-xl font-semibold">
