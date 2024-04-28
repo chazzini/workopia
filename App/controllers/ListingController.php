@@ -155,6 +155,11 @@ class ListingController
 
 
         $this->db->query('delete from listings where id=:id', ['id' => $id])->rowCount();
+
+
+        $_SESSION['success_message'] = 'Listing deleted successfully';
+
+
         redirect('/listings');
 
     }
