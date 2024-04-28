@@ -2,9 +2,9 @@
 namespace App\Controllers;
 
 use Framework\Database;
-use Framework\Session;
+use Framework\Session as Session;
 use Framework\Validation;
-use Framework\Authorization;
+use Framework\Authorization as Authorization;
 use PDO;
 
 /**
@@ -291,5 +291,38 @@ class ListingController
 
         redirect('/listings');
 
+    }
+
+
+    /**
+     * Search Listings
+     * 
+     * @return void
+     */
+    public function search()
+    {
+        $keywords = trim($_GET['keywords'] ?? '');
+        $location = trim($_GET['location'] ?? '');
+
+        $params = [
+            'keywords' => "%{$keywords}%",
+            'location' => "%{$location}%",
+        ];
+        //if you database suppose fulltext
+        // $search_result = $this->db
+        //     ->query(
+        //         "SELECT * FROM listings 
+        //         WHERE MATCH (title, description) AGAINST(:keywords IN NATURAL LANGUAGE MODE) 
+        //         OR MATCH (city,state) AGAINST(:location IN NATURAL LANGUAGE MODE)",
+        //         $params
+        //     )->fetch();
+
+        $search_result = $this->db
+            ->query(
+                "SELECT * FROM listings WHERE (title like :keywords OR description like :keywords OR tags like :keywords) or (state like :location OR city like :location)",
+                $params
+            )->fetchAll();
+
+        loadView('/listings/index', ['listings' => $search_result]);
     }
 }
