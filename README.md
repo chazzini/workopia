@@ -3,6 +3,7 @@
 This job listing site is built using vanilla PHP, incorporating various features such as PHP classes, sessions for user authentication, validation for input data, middleware for processing requests, a router for handling routes,MVC for architecture, PDO for database access and Composer for managing dependencies.
 
 ### Features:
+
 - **PHP Class:** Organizes code into reusable classes for better structure and maintainability.
 - **Session Management:** Uses sessions for user authentication and maintaining user data across pages.
 - **Validation:** Implements validation mechanisms to ensure data integrity and security.
@@ -11,18 +12,22 @@ This job listing site is built using vanilla PHP, incorporating various features
 - **Composer Integration:** Manages external dependencies and packages using Composer.
 
 ### Clone and Setup Instructions:
+
 1. Clone the repository using the following command:
+
    ```
    git clone https://github.com/chazzini/workopia.git
    ```
 
 2. Set up the database by importing the SQL file provided:
+
    - [SQL File](database/db.sql)
    - Use a tool like phpMyAdmin or MySQL command line to import the SQL file.
 
 3. Configure the database credentials in the project's configuration file (`config.php` or similar).
    create a folder in the root called config> inside config create file(`db.php`).
    Add the content below to file.
+
    ```
    <?php
 
@@ -36,18 +41,20 @@ This job listing site is built using vanilla PHP, incorporating various features
     ];
    ```
 
-5. Install dependencies using Composer:
+4. Install dependencies using Composer:
+
    ```
    composer install
    ```
 
-6. Start the PHP development server:
+5. Start the PHP development server:
+
    ```
    php -S localhost:8000
    ```
 
-7. Access the site in your browser at [http://localhost:8000](http://localhost:8000).
+6. Access the site in your browser at [http://localhost:8000](http://localhost:8000).
 
 ### Screenshot:
-![Job Listing Site Screenshot](screen-shot)
 
+![Job Listing Site Screenshot](screen.png)
