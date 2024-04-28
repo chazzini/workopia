@@ -2,6 +2,7 @@
 loadPartial('head');
 loadPartial('navbar');
 loadPartial('top-banner');
+loadPartial('message');
 ?>
 
 <!-- Job Listings -->

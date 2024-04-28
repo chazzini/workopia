@@ -1,6 +1,7 @@
 <?php
 loadPartial('head');
 loadPartial('navbar');
+loadPartial('message');
 ?>
 <!-- Registration Form Box -->
 <div class="flex items-center justify-center mt-20">
@@ -15,14 +16,14 @@ loadPartial('navbar');
                 <input type="text" name="name" placeholder="Full Name"
                     class="w-full px-4 py-2 border rounded focus:outline-none" value="<?= $users['name'] ?? '' ?>" />
                 <?php if (isset($errors['name'])): ?>
-                <em class="text-red"><?= $errors['name'] ?></em>
+                    <em class="text-red"><?= $errors['name'] ?></em>
                 <?php endif; ?>
             </div>
             <div class="mb-4">
                 <input type="email" name="email" placeholder="Email Address"
                     class="w-full px-4 py-2 border rounded focus:outline-none" value="<?= $users['email'] ?? '' ?>" />
                 <?php if (isset($errors['email'])): ?>
-                <em class="text-red"><?= $errors['email'] ?></em>
+                    <em class="text-red"><?= $errors['email'] ?></em>
                 <?php endif; ?>
             </div>
             <div class="mb-4">
@@ -38,14 +39,14 @@ loadPartial('navbar');
                 <input type="password" name="password" placeholder="Password"
                     class="w-full px-4 py-2 border rounded focus:outline-none" />
                 <?php if (isset($errors['password'])): ?>
-                <em class="text-red-500"><?= $errors['password'] ?></em>
+                    <em class="text-red-500"><?= $errors['password'] ?></em>
                 <?php endif; ?>
             </div>
             <div class="mb-4">
                 <input type="password" name="password_confirmation" placeholder="Confirm Password"
                     class="w-full px-4 py-2 border rounded focus:outline-none" />
                 <?php if (isset($errors['password_confirmation'])): ?>
-                <em class="text-red-500"><?= $errors['password_confirmation'] ?></em>
+                    <em class="text-red-500"><?= $errors['password_confirmation'] ?></em>
                 <?php endif; ?>
             </div>
             <button type="submit"

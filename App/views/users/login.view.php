@@ -1,7 +1,7 @@
 <?php
 loadPartial('head');
 loadPartial('navbar');
-
+loadPartial('message');
 ?>
 <!-- Login Form Box -->
 <div class="flex justify-center items-center mt-20">
